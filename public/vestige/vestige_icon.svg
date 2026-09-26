@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Vestige</title>
+  <desc id="desc">Three clear video memories rise above a fading life line, meeting a warm present marker before a living heartbeat.</desc>
+  <defs>
+    <linearGradient id="pastFade" gradientUnits="userSpaceOnUse" x1="112" y1="540" x2="476" y2="540">
+      <stop offset="0" stop-color="#F1F2ED" stop-opacity="0.08"/>
+      <stop offset="0.5" stop-color="#F1F2ED" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#F1F2ED" stop-opacity="0.82"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="232" fill="#000000"/>
+  <path d="M112 540H476" fill="none" stroke="url(#pastFade)" stroke-width="52" stroke-linecap="round"/>
+  <path d="M154 386V466L218 426Z" fill="#F1F2ED"/>
+  <path d="M264 386V466L328 426Z" fill="#F1F2ED"/>
+  <path d="M374 386V466L438 426Z" fill="#F1F2ED"/>
+  <path
+    d="M548 540H612L646 598L692 342L742 706L786 540H912"
+    fill="none"
+    stroke="#F1F2ED"
+    stroke-width="52"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+  <circle cx="512" cy="540" r="31" fill="#FF7A47" stroke="#F1F2ED" stroke-width="12"/>
+</svg>

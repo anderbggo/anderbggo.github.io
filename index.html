@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vestige/vestige_icon.svg" />
+    <title>En construcción</title>
+    <meta
+      name="description"
+      content="Este espacio está en construcción."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://anderbggo.github.io/" />
+    <meta property="og:title" content="En construcción — anderbggo.github.io" />
+    <meta property="og:description" content="Este espacio está en construcción." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://anderbggo.github.io/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="anderbggo.github.io" />
+    <meta name="theme-color" content="#f6f1e7" />
+    <script>
+      (() => {
+        const language = localStorage.getItem("site-language") ?? localStorage.getItem("vestige-language") ?? localStorage.getItem("contribute-language");
+        if (language === "es" || language === "en") document.documentElement.lang = language;
+        const theme = localStorage.getItem("site-theme") ?? localStorage.getItem("vestige-theme");
+        document.documentElement.dataset.siteTheme = theme === "light" || theme === "dark" ? theme : "system";
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
