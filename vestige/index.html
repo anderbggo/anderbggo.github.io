@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vestige/vestige_icon.svg" />
+    <title>Vestige</title>
+    <meta
+      name="description"
+      content="Vestige: un segundo al día · a second every day. Guarda clips de un segundo o fotos por fecha y crea compilaciones mensuales o anuales. Sin cuenta, anuncios ni subidas."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://anderbggo.github.io/vestige/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vestige" />
+    <meta property="og:title" content="Vestige — Un segundo al día · A second every day" />
+    <meta property="og:description" content="Un segundo al día, cada día — a second every day. Guarda fotos y clips por fecha y crea películas mensuales o anuales sin cuenta ni subidas." />
+    <meta property="og:url" content="https://anderbggo.github.io/vestige/" />
+    <meta property="og:image" content="https://anderbggo.github.io/vestige/vestige_icon.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#17140f" />
+    <script>
+      (() => {
+        const language = localStorage.getItem("site-language") ?? localStorage.getItem("vestige-language") ?? localStorage.getItem("contribute-language");
+        if (language === "es" || language === "en") document.documentElement.lang = language;
+        const theme = localStorage.getItem("site-theme") ?? localStorage.getItem("vestige-theme");
+        document.documentElement.dataset.siteTheme = theme === "light" || theme === "dark" ? theme : "system";
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/vestige/main.tsx"></script>
+  </body>
+</html>

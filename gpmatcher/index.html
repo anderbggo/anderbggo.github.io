@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/gpmatcher/photo.ico" />
+    <title>Google Photos Matcher</title>
+    <meta name="description" content="Google Photos Matcher: restaura las fechas y los metadatos de tus fotos y vídeos de Google Takeout. Gratis, local y sin instalación. Free, local metadata restoration for Windows." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://anderbggo.github.io/gpmatcher/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Google Photos Matcher" />
+    <meta property="og:title" content="Google Photos Matcher" />
+    <meta property="og:description" content="Recupera las fechas y los metadatos de tu biblioteca de Google Photos. Restore your Google Photos metadata. Free and local." />
+    <meta property="og:url" content="https://anderbggo.github.io/gpmatcher/" />
+    <meta property="og:image" content="https://anderbggo.github.io/gpmatcher/interface-v3.png" />
+    <meta property="og:image:width" content="900" />
+    <meta property="og:image:height" content="680" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0E7A62" />
+    <script>
+      (() => {
+        const language = localStorage.getItem("site-language") ?? localStorage.getItem("vestige-language") ?? localStorage.getItem("contribute-language");
+        if (language === "es" || language === "en") document.documentElement.lang = language;
+        const theme = localStorage.getItem("site-theme") ?? localStorage.getItem("vestige-theme");
+        document.documentElement.dataset.siteTheme = theme === "light" || theme === "dark" ? theme : "system";
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/gpmatcher/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/gpmatcher/photo.ico" />
+    <title>Google Photos Matcher · Política de privacidad</title>
+    <meta name="description" content="Política de privacidad de Google Photos Matcher: tratamiento local de fotos, vídeos y metadatos. Google Photos Matcher privacy policy." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://anderbggo.github.io/gpmatcher/privacy/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Google Photos Matcher" />
+    <meta property="og:title" content="Google Photos Matcher · Privacy / Privacidad" />
+    <meta property="og:description" content="Cómo se tratan tus fotos, vídeos, metadatos y preferencias. How your photos, videos, metadata and preferences are handled." />
+    <meta property="og:url" content="https://anderbggo.github.io/gpmatcher/privacy/" />
+    <meta property="og:image" content="https://anderbggo.github.io/gpmatcher/interface-v3.png" />
+    <meta name="theme-color" content="#0E7A62" />
+    <script>
+      (() => {
+        const language = localStorage.getItem("site-language") ?? localStorage.getItem("vestige-language") ?? localStorage.getItem("contribute-language");
+        if (language === "es" || language === "en") document.documentElement.lang = language;
+        const theme = localStorage.getItem("site-theme") ?? localStorage.getItem("vestige-theme");
+        document.documentElement.dataset.siteTheme = theme === "light" || theme === "dark" ? theme : "system";
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/gpmatcher/main.tsx"></script>
+  </body>
+</html>
