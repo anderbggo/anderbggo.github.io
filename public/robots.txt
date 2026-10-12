@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anderbggo.github.io/sitemap.xml

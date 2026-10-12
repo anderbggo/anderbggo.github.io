@@ -1,0 +1,27 @@
+<svg width="1024" height="1024" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- App icon with rounded corners baked in, for the website and favicon. -->
+  <defs>
+    <clipPath id="rounded"><rect width="512" height="512" rx="115"/></clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#03141F"/><stop offset="0.55" stop-color="#07344F"/><stop offset="1" stop-color="#12A4A8"/></linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7DE2D1" stop-opacity="0.5"/><stop offset="1" stop-color="#7DE2D1" stop-opacity="0"/></linearGradient>
+    <mask id="crescent"><rect width="512" height="512" fill="black"/><circle cx="316" cy="180" r="56" fill="white"/><circle cx="348" cy="158" r="52" fill="black"/></mask>
+  </defs>
+  <g clip-path="url(#rounded)">
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <!-- Edge stars are decoration only; Android crops them. -->
+  <g fill="#FFFFFF">
+    <circle cx="70" cy="92" r="4" opacity="0.8"/>
+    <circle cx="462" cy="64" r="3.5" opacity="0.8"/>
+    <circle cx="456" cy="214" r="3" opacity="0.6"/>
+    <circle cx="124" cy="196" r="3" opacity="0.7"/>
+    <circle cx="232" cy="118" r="2.5" opacity="0.6"/>
+    <path d="M178 128 Q180.5 145 196 148 Q180.5 151 178 168 Q175.5 151 160 148 Q175.5 145 178 128 Z"/>
+  </g>
+  <g mask="url(#crescent)"><rect x="254" y="122" width="124" height="116" fill="#C60B1E"/><rect x="254" y="152" width="124" height="56" fill="#FFC400"/></g>
+  <path d="M-20 330 C90 330 130 236 196 236 C262 236 282 380 348 380 C414 380 450 300 532 300 L532 512 L-20 512 Z" fill="url(#area)"/>
+  <path d="M-20 374 C90 374 130 280 196 280 C262 280 282 424 348 424 C414 424 450 344 532 344" fill="none" stroke="#7DE2D1" stroke-opacity="0.3" stroke-width="8" stroke-linecap="round"/>
+  <path d="M-20 418 C90 418 130 324 196 324 C262 324 282 468 348 468 C414 468 450 388 532 388" fill="none" stroke="#7DE2D1" stroke-opacity="0.15" stroke-width="6" stroke-linecap="round"/>
+  <path d="M-20 330 C90 330 130 236 196 236 C262 236 282 380 348 380 C414 380 450 300 532 300" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="272" cy="308" r="22" fill="#FF6F59" stroke="#FFFFFF" stroke-width="9"/>
+  </g>
+</svg>
