@@ -1,0 +1,10 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "roko_summary",
+      "fieldPath": "lights",
+      "indexes": []
+    }
+  ]
+}

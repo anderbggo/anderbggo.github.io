@@ -1,0 +1,1558 @@
+@font-face {
+  font-family: "Manrope";
+  src: url("/vestige/fonts/Manrope-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("/vestige/fonts/Newsreader-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --paper: #f1e9da;
+  --paper-2: #f7f1e5;
+  --ink: #231c15;
+  --muted: #74685a;
+  --rule: rgba(64, 98, 150, 0.2);
+  --wax: #a8231c;
+  --wax-dark: #6f130f;
+  --sky: linear-gradient(180deg, #1c1a44 0%, #3a2f6c 42%, #8f5578 74%, #e39a72 100%);
+  --hill: #15112a;
+}
+
+:root[data-site-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0f0e16;
+  --paper-2: #15131d;
+  --ink: #ebe3d4;
+  --muted: #9a9284;
+  --rule: rgba(150, 170, 230, 0.12);
+  --wax: #b8302a;
+  --wax-dark: #6a120f;
+  --sky: linear-gradient(180deg, #020208 0%, #0b0a22 50%, #1d1740 88%, #2a1f48 100%);
+  --hill: #050409;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-site-theme="system"] {
+    color-scheme: dark;
+    --paper: #0f0e16;
+    --paper-2: #15131d;
+    --ink: #ebe3d4;
+    --muted: #9a9284;
+    --rule: rgba(150, 170, 230, 0.12);
+    --wax: #b8302a;
+    --wax-dark: #6a120f;
+    --sky: linear-gradient(180deg, #020208 0%, #0b0a22 50%, #1d1740 88%, #2a1f48 100%);
+    --hill: #050409;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-width: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Manrope", sans-serif;
+  line-height: 1.6;
+}
+
+button,
+input,
+textarea,
+a {
+  font: inherit;
+  color: inherit;
+}
+
+.roko-site {
+  overflow-x: clip;
+}
+
+.roko-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.roko-skip {
+  position: fixed;
+  z-index: 50;
+  top: 8px;
+  left: 8px;
+  padding: 8px 12px;
+  background: var(--paper);
+  color: var(--ink);
+  transform: translateY(-160%);
+}
+
+.roko-skip:focus {
+  transform: none;
+}
+
+:focus-visible {
+  outline: 2px dashed currentColor;
+  outline-offset: 4px;
+}
+
+/* Header: nothing more than words floating over the sky */
+
+.roko-header {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px clamp(20px, 5vw, 64px);
+  color: #efe6d6;
+}
+
+.roko-header .home-link {
+  min-width: 0;
+  height: auto;
+  padding: 4px 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+}
+
+.roko-header .home-link:hover {
+  background: none;
+  color: inherit;
+  border-bottom-color: currentColor;
+}
+
+.roko-toggles {
+  display: flex;
+  gap: 22px;
+  font-size: 13px;
+}
+
+.roko-toggles div {
+  display: flex;
+  gap: 4px;
+}
+
+.roko-toggles button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  opacity: 0.55;
+  cursor: pointer;
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+.roko-toggles button[aria-pressed="true"] {
+  opacity: 1;
+  text-decoration: underline wavy;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+/* Scene */
+
+.roko-scene {
+  position: relative;
+  min-height: max(100svh, 760px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-rows: 1fr auto;
+  column-gap: clamp(20px, 4vw, 64px);
+  padding-top: 92px;
+  overflow: hidden;
+  background:
+    radial-gradient(1px 1px at 8% 14%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 22% 36%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 34% 9%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 46% 28%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 58% 6%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 71% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 87% 11%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 93% 40%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 4% 52%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 40% 58%, #fff 50%, transparent 51%),
+    var(--sky);
+  color: #efe6d6;
+  scroll-margin-top: 0;
+}
+
+.roko-lanterns {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.roko-lantern {
+  position: absolute;
+  z-index: 1;
+  top: 105%;
+  left: var(--x);
+  width: calc(34px * var(--scale));
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  animation: roko-rise var(--duration) linear var(--delay) infinite;
+}
+
+.roko-lantern:hover,
+.roko-lantern.is-active {
+  z-index: 6;
+  opacity: 1 !important;
+}
+
+.roko-lantern:hover,
+.roko-lantern:hover svg,
+.roko-lantern.is-active,
+.roko-lantern.is-active svg {
+  animation-play-state: paused;
+}
+
+.roko-lantern:hover svg,
+.roko-lantern.is-active svg {
+  filter: drop-shadow(0 0 12px #ffd27a);
+}
+
+.roko-lantern svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  animation: roko-sway var(--sway) ease-in-out infinite alternate;
+}
+
+/* Lights with a message carry a letter and glow a little more. */
+.roko-lantern.has-words {
+  z-index: 2;
+}
+
+.roko-lantern.has-words:not(:hover):not(.is-active):not(.is-fresh) svg {
+  filter: drop-shadow(0 0 6px rgba(255, 210, 122, 0.55));
+}
+
+.roko-letter-hang {
+  transform-box: view-box;
+  transform-origin: 20px 48px;
+  animation: roko-letter-swing 2.6s ease-in-out infinite alternate;
+}
+
+.roko-lantern.is-fresh svg {
+  filter: drop-shadow(0 0 14px #ffd27a);
+}
+
+.roko-lantern-glow {
+  fill: #ffb352;
+  opacity: 0.22;
+  filter: blur(4px);
+}
+
+.roko-scene-copy {
+  position: relative;
+  z-index: 3;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  max-width: 560px;
+  padding: 24px 0 clamp(120px, 12vw, 160px) clamp(20px, 6vw, 96px);
+  text-shadow: 0 1px 16px rgba(8, 6, 26, 0.9), 0 0 4px rgba(8, 6, 26, 0.6);
+  pointer-events: none;
+}
+
+.roko-scene-copy a,
+.roko-scene-copy button {
+  pointer-events: auto;
+}
+
+.roko-retry {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline wavy;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+
+.roko-date {
+  margin: 0 0 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  opacity: 0.75;
+}
+
+.roko-scene-copy h1 {
+  margin: 0 0 18px -0.05em;
+  font-family: "Newsreader", serif;
+  font-size: clamp(110px, 17vw, 230px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 40px rgba(255, 220, 160, 0.18);
+}
+
+.roko-epitaph {
+  max-width: 470px;
+  margin: 0 0 22px;
+  padding-left: 18px;
+  border-left: 1px solid rgba(255, 217, 143, 0.55);
+  font-family: "Newsreader", serif;
+  font-size: clamp(20px, 2vw, 25px);
+  font-style: italic;
+  line-height: 1.35;
+}
+
+
+.roko-days,
+.roko-progress {
+  margin: 0 0 10px;
+  font-size: 15px;
+  opacity: 0.78;
+}
+
+.roko-progress {
+  max-width: 440px;
+  opacity: 1;
+  color: #ffd98f;
+}
+
+.is-anniversary .roko-days {
+  color: #ffd98f;
+  opacity: 1;
+}
+
+.roko-write-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: "Newsreader", serif;
+  font-size: 24px;
+  font-style: italic;
+  text-decoration: underline wavy rgba(255, 217, 143, 0.7);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+}
+
+.roko-write-link span {
+  display: inline-block;
+  animation: roko-nudge 2.4s ease-in-out infinite;
+}
+
+/* Note shown when hovering, focusing or tapping a light */
+
+.roko-light-note {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  display: block;
+  width: max-content;
+  max-width: min(260px, 72vw);
+  margin-left: calc(-22px + var(--note-shift, 0px));
+  padding: 12px 16px 10px;
+  border-radius: 14px;
+  background: #fbf5e8;
+  color: #231c15;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  text-align: left;
+  white-space: normal;
+  text-shadow: none;
+  pointer-events: none;
+  animation: roko-note-in 200ms ease-out both;
+}
+
+.roko-light-note.is-below {
+  top: calc(100% + 10px);
+  bottom: auto;
+}
+
+.roko-light-note-message {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "Newsreader", serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.35;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.roko-light-note-meta {
+  display: block;
+  color: #74685a;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Hill, Roko and candles */
+
+/* The curve keeps a fixed height; below it the ground grows as far as the candles need, so they never spill out. */
+.roko-hill {
+  --hill-height: clamp(190px, 27vh, 270px);
+  position: relative;
+  z-index: 4;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-height: var(--hill-height);
+  padding: calc(var(--hill-height) * 0.44) 4% 18px 38%;
+  background: linear-gradient(transparent calc(var(--hill-height) - 2px), var(--hill) calc(var(--hill-height) - 2px));
+  pointer-events: none;
+}
+
+.roko-hill-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--hill-height);
+  fill: var(--hill);
+}
+
+.roko-dog {
+  position: absolute;
+  left: 21%;
+  top: calc(var(--hill-height) * 0.38);
+  width: clamp(110px, 12vw, 170px);
+  pointer-events: auto;
+  transform: translate(-50%, -100%);
+}
+
+.roko-dog-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.roko-dog svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px rgba(255, 244, 220, 0.16));
+}
+
+.roko-dog-fur {
+  fill: #f8f3e9;
+}
+
+.roko-dog-ear {
+  fill: #e8dcc5;
+}
+
+.roko-dog-shade {
+  fill: none;
+  stroke: #d6cab4;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+.roko-dog-collar {
+  fill: #c3342c;
+}
+
+.roko-dog-tail {
+  fill: none;
+  stroke: #f8f3e9;
+  stroke-width: 14;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 136px 206px;
+  animation: roko-wag-slow 5s ease-in-out infinite;
+}
+
+.roko-dog.is-wagging .roko-dog-tail {
+  animation: roko-wag 0.28s ease-in-out infinite alternate;
+}
+
+.roko-dog-head {
+  transform-box: view-box;
+  transform-origin: 100px 90px;
+  transition: transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: roko-look 9s ease-in-out infinite;
+}
+
+.roko-dog.is-tilted-left .roko-dog-head {
+  animation: none;
+  transform: rotate(-16deg);
+}
+
+.roko-dog.is-tilted-right .roko-dog-head {
+  animation: none;
+  transform: rotate(16deg);
+}
+
+.roko-dog-bubble {
+  position: absolute;
+  bottom: 96%;
+  left: 62%;
+  padding: 8px 14px;
+  border: 1.5px solid #231c15;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  background: #fbf5e8;
+  color: #231c15;
+  font-family: "Newsreader", serif;
+  font-size: 18px;
+  font-style: italic;
+  white-space: nowrap;
+  animation: roko-note-in 200ms ease-out both;
+}
+
+.roko-candles {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2px 14px;
+}
+
+.roko-candle {
+  position: relative;
+  width: 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: translateY(var(--lift));
+}
+
+.roko-candle:hover,
+.roko-candle.is-active {
+  z-index: 2;
+}
+
+.roko-candle:hover .roko-candle-glow,
+.roko-candle.is-active .roko-candle-glow {
+  opacity: 0.6;
+}
+
+.roko-candle svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.roko-candle .roko-candle-flame,
+.roko-candle .roko-candle-glow {
+  animation-delay: var(--flicker);
+}
+
+.roko-candle.is-fresh {
+  animation: roko-pop 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.roko-candle.has-words .roko-candle-glow {
+  opacity: 0.4;
+}
+
+.roko-candle-glow {
+  fill: #ffb93d;
+  opacity: 0.25;
+  filter: blur(3px);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: roko-glow 2.2s ease-in-out infinite;
+}
+
+.roko-candle-flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: roko-flicker 1.6s ease-in-out infinite;
+}
+
+/* Album */
+
+.roko-album {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(80px, 11vw, 140px) 20px 0;
+}
+
+.roko-album h2 {
+  margin: 0 0 clamp(36px, 5vw, 64px);
+  font-family: "Newsreader", serif;
+  font-size: clamp(44px, 6vw, 68px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.roko-album-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 56px) clamp(18px, 2.4vw, 32px);
+  align-items: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roko-photo--posando {
+  grid-column: 1 / span 5;
+  grid-row: span 2;
+  --tilt: -2deg;
+}
+
+.roko-photo--costa {
+  grid-column: 6 / span 4;
+  margin-top: 48px;
+  --tilt: 1.6deg;
+}
+
+.roko-photo--sonrisa {
+  grid-column: 10 / span 3;
+  --tilt: -1.2deg;
+}
+
+.roko-photo--manta {
+  grid-column: 6 / span 5;
+  --tilt: 0.8deg;
+}
+
+.roko-photo--gafas {
+  grid-column: 11 / span 2;
+  margin-top: 36px;
+  --tilt: -4deg;
+}
+
+.roko-photo figure {
+  margin: 0;
+  transform: rotate(var(--tilt));
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.roko-photo figure:hover,
+.roko-photo figure:focus-within {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.roko-photo button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.roko-photo-print {
+  position: relative;
+  display: block;
+  padding: clamp(6px, 0.9vw, 12px);
+  background: #fffdf7;
+  box-shadow: 0 1px 2px rgba(40, 25, 10, 0.2), 0 14px 30px rgba(40, 25, 10, 0.18);
+}
+
+.roko-photo-print::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 26px;
+  background: rgba(236, 222, 186, 0.78);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transform: translateX(-50%) rotate(calc(var(--tilt) * -2));
+  clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 48%);
+}
+
+.roko-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.roko-photo figcaption {
+  margin-top: 12px;
+  padding: 0 4px;
+  color: var(--muted);
+  font-family: "Newsreader", serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.roko-lightbox {
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #efe6d6;
+  overflow: visible;
+}
+
+.roko-lightbox::backdrop {
+  background: rgba(6, 5, 16, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.roko-lightbox figure {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.roko-lightbox img {
+  display: block;
+  max-width: min(88vw, 1100px);
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  background: #fffdf7;
+}
+
+.roko-lightbox figcaption {
+  max-width: 560px;
+  padding: 0 20px;
+  font-family: "Newsreader", serif;
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+.roko-lightbox button {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(239, 230, 214, 0.1);
+  cursor: pointer;
+}
+
+.roko-lightbox button:hover {
+  background: rgba(239, 230, 214, 0.22);
+}
+
+.roko-lightbox-close {
+  top: 18px;
+  right: 18px;
+}
+
+.roko-lightbox-prev,
+.roko-lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.roko-lightbox-prev {
+  left: 14px;
+}
+
+.roko-lightbox-next {
+  right: 14px;
+}
+
+/* Letter */
+
+.roko-letter {
+  padding: clamp(80px, 12vw, 150px) 20px clamp(60px, 9vw, 110px);
+  scroll-margin-top: 0;
+}
+
+.roko-letter-form {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.roko-letter-form h2 {
+  margin: 0 0 36px;
+  font-family: "Newsreader", serif;
+  font-size: clamp(44px, 6vw, 68px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Step 1: lantern or candle */
+
+.roko-kind {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 4vw, 48px);
+}
+
+.roko-kind-option {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  padding: 20px 12px 18px;
+  border: 0;
+  border-radius: 24px;
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 200ms ease;
+}
+
+.roko-kind-option:hover {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.roko-kind-art {
+  display: grid;
+  place-items: end center;
+  height: 112px;
+  margin-bottom: 8px;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 200ms ease, filter 200ms ease;
+}
+
+.roko-kind-art svg {
+  overflow: visible;
+}
+
+.roko-kind-option--lantern .roko-kind-art svg {
+  width: 70px;
+  height: 95px;
+  transition: margin-bottom 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Room for the hanging letter so it doesn't cover the label. */
+.roko-kind-option--lantern .roko-kind-art svg.has-letter {
+  margin-bottom: 26px;
+}
+
+.roko-kind-option--candle .roko-kind-art svg {
+  width: 44px;
+  height: 88px;
+}
+
+.roko-kind-option[aria-checked="false"] .roko-kind-art {
+  opacity: 0.45;
+  filter: grayscale(0.7);
+}
+
+.roko-kind-option[aria-checked="true"] .roko-kind-art {
+  transform: translateY(-6px) scale(1.06);
+  filter: drop-shadow(0 0 22px rgba(255, 185, 80, 0.55));
+}
+
+.roko-kind-option--lantern[aria-checked="true"] .roko-kind-art svg {
+  animation: roko-sway 3s ease-in-out infinite alternate;
+}
+
+.roko-kind-name {
+  position: relative;
+  padding: 0 10px;
+  font-family: "Newsreader", serif;
+  font-size: 30px;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.roko-kind-option[aria-checked="false"] .roko-kind-name {
+  color: var(--muted);
+}
+
+.roko-kind-hint {
+  max-width: 220px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Step 2: optional words */
+
+.roko-words {
+  margin-top: 40px;
+  padding: 24px 0 0;
+  border-top: 1.5px dashed color-mix(in srgb, var(--muted) 45%, transparent);
+}
+
+.roko-words-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.roko-switch-track {
+  position: relative;
+  flex-shrink: 0;
+  width: 52px;
+  height: 30px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  transition: background-color 220ms ease, border-color 220ms ease;
+}
+
+.roko-switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 220ms ease;
+}
+
+.roko-words.is-open .roko-switch-track {
+  border-color: var(--wax);
+  background: var(--wax);
+}
+
+.roko-words.is-open .roko-switch-thumb {
+  background: #fffaf0;
+  transform: translateX(22px);
+}
+
+.roko-words-label {
+  font-family: "Newsreader", serif;
+  font-size: 24px;
+  font-style: italic;
+}
+
+.roko-optional-tag {
+  padding: 3px 10px 2px;
+  border: 1.5px dashed var(--muted);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+}
+
+.roko-words-hint {
+  margin: 6px 0 0 66px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 560px) {
+  .roko-words-hint {
+    margin-left: 0;
+  }
+}
+
+.roko-words-panel {
+  margin-top: 28px;
+  padding-left: 66px;
+  animation: roko-unfold 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.roko-letter-greeting {
+  margin: 0 0 4px;
+  font-family: "Newsreader", serif;
+  font-size: 34px;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.roko-letter-body {
+  position: relative;
+  display: block;
+  --line: 44px;
+}
+
+.roko-letter-body textarea {
+  display: block;
+  width: 100%;
+  min-height: calc(var(--line) * 5);
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  background-image: linear-gradient(transparent calc(var(--line) - 1px), var(--rule) calc(var(--line) - 1px));
+  background-size: 100% var(--line);
+  background-attachment: local;
+  font-family: "Newsreader", serif;
+  font-size: 24px;
+  line-height: var(--line);
+  resize: none;
+  field-sizing: content;
+}
+
+.roko-letter-body textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.roko-letter-body textarea:focus {
+  outline: none;
+}
+
+.roko-letter-count {
+  position: absolute;
+  right: calc(100% + 18px);
+  bottom: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.roko-letter-line {
+  margin: 28px 0 0;
+  font-family: "Newsreader", serif;
+  font-size: 24px;
+  line-height: 1.7;
+}
+
+.roko-hand-circle {
+  position: absolute;
+  inset: -10px -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 20px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.roko-hand-circle path {
+  fill: none;
+  stroke: var(--wax);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: roko-draw 600ms ease-out forwards;
+}
+
+.roko-signature input {
+  width: min(100%, 360px);
+  padding: 0 4px;
+  border: 0;
+  border-bottom: 1.5px dotted var(--muted);
+  background: none;
+  font-family: "Newsreader", serif;
+  font-size: 24px;
+  font-style: italic;
+}
+
+.roko-signature input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.roko-signature input:focus {
+  outline: none;
+  border-bottom-style: solid;
+  border-bottom-color: var(--ink);
+}
+
+.roko-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.roko-letter-footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 44px;
+}
+
+/* Step 3: send */
+
+.roko-send {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 8px 28px 8px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font-family: "Newsreader", serif;
+  font-size: 22px;
+  font-style: italic;
+  transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+
+.roko-send:hover,
+.roko-send:focus-visible {
+  transform: translateY(-2px);
+}
+
+.roko-send.is-sealed {
+  border-color: var(--wax);
+  background: var(--wax);
+  color: #fffaf0;
+}
+
+.roko-send-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 48px;
+}
+
+.roko-send-icon svg {
+  overflow: visible;
+}
+
+.roko-send-icon .roko-lantern-icon {
+  width: 30px;
+  height: 40px;
+}
+
+.roko-send-icon .roko-candle-icon {
+  width: 20px;
+  height: 40px;
+}
+
+.roko-send-icon .roko-seal {
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+.roko-send-icon .roko-seal-wax {
+  fill: #c83a31;
+}
+
+.roko-send:hover .roko-seal,
+.roko-send:focus-visible .roko-seal {
+  transform: rotate(10deg) scale(1.06);
+}
+
+.roko-send.is-sending .roko-send-icon {
+  animation: roko-spin 1.2s linear infinite;
+}
+
+.roko-send:disabled {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.roko-seal {
+  transform: rotate(-8deg);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.roko-seal-wax {
+  fill: var(--wax);
+}
+
+.roko-seal-ring {
+  fill: none;
+  stroke: var(--wax-dark);
+  stroke-width: 2.5;
+  opacity: 0.6;
+}
+
+.roko-seal-paw {
+  fill: var(--wax-dark);
+  opacity: 0.75;
+}
+
+.roko-letter-notes {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.roko-letter-notes p {
+  margin: 0 0 4px;
+}
+
+.roko-status {
+  min-height: 1.6em;
+  color: var(--ink);
+  font-family: "Newsreader", serif;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.roko-status--error,
+.roko-status--cooldown {
+  color: var(--wax);
+}
+
+.roko-look-up {
+  font-style: normal;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline wavy;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+
+.roko-letter-form.is-sent .roko-send-icon {
+  animation: roko-pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes roko-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 -40px 0);
+  }
+}
+
+/* Animations */
+
+@keyframes roko-rise {
+  0% {
+    top: 105%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    top: -14%;
+    opacity: 0;
+  }
+}
+
+@keyframes roko-sway {
+  from {
+    transform: translateX(-10px) rotate(-4deg);
+  }
+  to {
+    transform: translateX(10px) rotate(4deg);
+  }
+}
+
+@keyframes roko-letter-swing {
+  from {
+    transform: rotate(7deg);
+  }
+  to {
+    transform: rotate(-7deg);
+  }
+}
+
+@keyframes roko-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes roko-note-in {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+
+@keyframes roko-wag-slow {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  76%,
+  88% {
+    transform: rotate(-14deg);
+  }
+  82%,
+  94% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes roko-wag {
+  from {
+    transform: rotate(-18deg);
+  }
+  to {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes roko-look {
+  0%,
+  40%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50%,
+  70% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes roko-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes roko-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(0deg);
+  }
+  25% {
+    transform: scale(0.94, 1.08) rotate(-3deg);
+  }
+  50% {
+    transform: scale(1.04, 0.94) rotate(2deg);
+  }
+  75% {
+    transform: scale(0.97, 1.05) rotate(-1deg);
+  }
+}
+
+@keyframes roko-glow {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes roko-pop {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+}
+
+@keyframes roko-spin {
+  to {
+    transform: rotate(352deg);
+  }
+}
+
+@keyframes roko-stamp {
+  0% {
+    transform: rotate(-8deg) scale(1.4);
+  }
+  100% {
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
+@keyframes roko-dangle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes roko-ink {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 860px) {
+  .roko-scene {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: max(100svh, 640px);
+    padding-top: 76px;
+  }
+
+  .roko-scene-copy {
+    /* Room for Roko's head, which pokes above the hill. */
+    padding: 20px 24px 64px;
+  }
+
+  .roko-hill {
+    --hill-height: 210px;
+    /* On narrow screens the candles use the whole width, starting just below Roko's paws. */
+    padding: calc(var(--hill-height) * 0.56) 5% 18px;
+  }
+
+  .roko-dog {
+    left: 22%;
+    top: calc(var(--hill-height) * 0.42);
+    width: 112px;
+  }
+
+  .roko-candles {
+    gap: 0 10px;
+  }
+
+  .roko-candle {
+    width: 12px;
+  }
+
+
+  .roko-album-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roko-photo--posando,
+  .roko-photo--manta {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .roko-photo--posando {
+    width: min(100%, 460px);
+    justify-self: center;
+  }
+
+  .roko-photo--costa {
+    grid-column: 1;
+    margin-top: 0;
+  }
+
+  .roko-photo--sonrisa {
+    grid-column: 2;
+    margin-top: 40px;
+  }
+
+  .roko-photo--gafas {
+    grid-column: 1 / -1;
+    width: min(70%, 300px);
+    justify-self: center;
+    margin-top: 0;
+  }
+
+  .roko-photo figcaption {
+    font-size: 16px;
+  }
+
+  .roko-letter-count {
+    position: static;
+    display: block;
+    margin-top: 6px;
+    text-align: right;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .roko-header {
+    padding: 14px 18px;
+  }
+
+  .roko-toggles {
+    gap: 12px;
+  }
+
+  .roko-letter-line,
+  .roko-signature input {
+    font-size: 21px;
+  }
+
+  .roko-letter-body textarea {
+    font-size: 21px;
+  }
+
+  .roko-letter-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .roko-send {
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .roko-kind-art {
+    height: 92px;
+  }
+
+  .roko-kind-name {
+    font-size: 25px;
+  }
+
+  .roko-words-hint {
+    margin-left: 0;
+  }
+
+  .roko-words-panel {
+    padding-left: 0;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .roko-lantern {
+    top: calc(12% + var(--scale) * 40%);
+    animation: none !important;
+  }
+}

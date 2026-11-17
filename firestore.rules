@@ -1,0 +1,51 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function tributePath(id) {
+      return /databases/$(database)/documents/roko_tributes/$(id);
+    }
+
+    // The summary may only gain one light per write, and that entry must be an exact copy of a real light
+    // (either created in the same commit or already existing). Nothing in it can be changed or removed from the web.
+    function addsOneLight(data, before) {
+      let id = data.lastId;
+      let diff = data.lights.diff(before);
+      return data.keys().hasOnly(['lights', 'lastId'])
+        && id is string
+        && data.lights is map
+        && diff.affectedKeys().hasOnly([id])
+        && diff.addedKeys().hasAll([id])
+        && existsAfter(tributePath(id))
+        && data.lights[id] == getAfter(tributePath(id)).data;
+    }
+
+    // Public memorial for /roko/: anyone can read and add, nobody can edit or delete from the web.
+    match /roko_tributes/{tributeId} {
+      allow read: if true;
+
+      allow create: if request.resource.data.keys().hasOnly(['kind', 'name', 'message', 'createdAt'])
+        && request.resource.data.keys().hasAll(['kind', 'name', 'message', 'createdAt'])
+        && request.resource.data.kind in ['candle', 'lantern']
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 40
+        && request.resource.data.message is string
+        && request.resource.data.message.size() <= 280
+        && request.resource.data.createdAt == request.time;
+
+      allow update, delete: if false;
+    }
+
+    // Every light in one document, so a visit to /roko/ costs a single read.
+    match /roko_summary/sky {
+      allow read: if true;
+      allow create: if addsOneLight(request.resource.data, {});
+      allow update: if addsOneLight(request.resource.data, resource.data.lights);
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

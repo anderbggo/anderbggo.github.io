@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/mareasES/mareas_icon.svg" />
+    <title>Mareas España</title>
+    <meta
+      name="description"
+      content="Mareas España: horarios y alturas de marea de 4.484 playas españolas, calculados en tu móvil y sin conexión. Tide times and heights for Spanish beaches, offline."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://anderbggo.github.io/mareasES/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mareas España" />
+    <meta property="og:title" content="Mareas España" />
+    <meta property="og:description" content="Pleamar, bajamar y curva de marea de 4.484 playas españolas, sin conexión. Tide times for Spanish beaches, offline." />
+    <meta property="og:url" content="https://anderbggo.github.io/mareasES/" />
+    <meta property="og:image" content="https://anderbggo.github.io/mareasES/screenshots/es-light-detail.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0A5C7A" />
+    <script>
+      (() => {
+        const language = localStorage.getItem("site-language") ?? localStorage.getItem("vestige-language") ?? localStorage.getItem("contribute-language");
+        if (language === "es" || language === "en") document.documentElement.lang = language;
+        const theme = localStorage.getItem("site-theme") ?? localStorage.getItem("vestige-theme");
+        document.documentElement.dataset.siteTheme = theme === "light" || theme === "dark" ? theme : "system";
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/mareas/main.tsx"></script>
+  </body>
+</html>
